@@ -6,7 +6,7 @@ export const mockCategories: Category[] = [
     platforms: [
       {
         name: "公式サイト",
-        brands: ["SHISEIDO", "ORBIS", "POLA", "KOSE"]
+        brands: ["SHISEIDO", "ORBIS", "POLA", "KOSE", "VT"]
       },
       {
         name: "楽天",
