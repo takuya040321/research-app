@@ -14,13 +14,48 @@ export default function ShopResearchPage() {
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleFetchProducts = (type: 'bulk' | 'shop') => {
-    setIsLoading(true);
-    // Simulate API fetch
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-  };
+  const handleFetchProducts = async (type: 'bulk' | 'shop') => {
+    console.log('handleFetchProducts called with type:', type);
+    console.log('Current state:', {
+      selectedCategory,
+      selectedPlatform,
+      selectedBrand,
+      isLoading
+    });
+
+    if (type === 'shop') {
+      if (selectedBrand !== 'VT') {
+        console.log('Brand is not VT, returning early');
+        return;
+      }
+
+      if (selectedCategory !== 'コスメ') {
+        console.log('Category is not コスメ, returning early');
+        return;
+      }
+
+      if (selectedPlatform !== '公式サイト') {
+        console.log('Platform is not 公式サイト, returning early');
+        return;
+      }
+
+      console.log('Conditions met, starting VT product fetch');
+      setIsLoading(true);
+      try {
+        console.log(`VT商品データ取得を開始します... (ブランド: ${selectedBrand})`);
+        // ここで実際のスクレイピング処理を実装します
+        
+        // シミュレーション用の遅延
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        console.log('VT商品データ取得が完了しました！');
+      } catch (error) {
+        console.error('VT商品データ取得に失敗しました:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  }
 
   return (
     <div className="flex h-screen">
@@ -60,9 +95,7 @@ export default function ShopResearchPage() {
               </Button>
             </div>
           </div>
-          
           <ShopResearchStats />
-          
           <ProductList 
             selectedCategory={selectedCategory}
             selectedPlatform={selectedPlatform}

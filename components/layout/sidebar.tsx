@@ -42,6 +42,7 @@ export function Sidebar({
     setSelectedCategory(category);
     setSelectedPlatform(null);
     setSelectedBrand(null);
+    console.log('Category selected:', category);
   };
   
   const togglePlatform = (platform: string) => {
@@ -52,10 +53,12 @@ export function Sidebar({
     );
     setSelectedPlatform(platform);
     setSelectedBrand(null);
+    console.log('Platform selected:', platform);
   };
   
   const selectBrand = (brand: string) => {
     setSelectedBrand(brand);
+    console.log('Brand selected:', brand);
   };
 
   const getIconForCategory = (category: string) => {
